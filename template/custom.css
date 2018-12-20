@@ -1,0 +1,57 @@
+html, body {
+  height: 100%;
+}
+
+.split {
+  height: 100%;
+}
+
+.center {
+  text-align: center;
+}
+
+.under-navbar {
+  padding-top: 60px; /* 56px for top navbar */
+}
+.core-body {
+  padding-top: 56px;
+  margin-left: 10%;
+  margin-right: 10%;
+  height: 100%;
+}
+
+.split {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.gutter {
+  background-color: #330000;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+  cursor: col-resize;
+}
+
+.gutter.gutter-vertical {
+  cursor: row-resize;
+}
+
+.split.split-horizontal, .gutter.gutter-horizontal {
+  height: 100%;
+  float: left;
+}
+
+#one, #two {
+  background-color: #e6f2ff;
+}
+
+.combatant-col {
+  padding-left: 0px;
+  padding-right: 0px;
+}

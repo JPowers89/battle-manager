@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Combat Master</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.10/split.min.js"></script>
+    <link rel="stylesheet" href="custom.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
+      <div class="d-flex justify-content-start">
+        <a href="/home" class="navbar-brand mr-0">Combat Master</a>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="btn-toolbar" role="toolbar" aria-label="Combat Toolbar">
+          <div class="btn-group mr-2" role="group" aria-label="Roll Initiative">
+            <button type="button" class="btn btn-outline-primary">Roll</button>
+          </div>
+          <div class="btn-group" role="group" aria-label="Manage Combat">
+            <button type="button" class="btn btn-outline-primary">Next</button>
+            <button type="button" class="btn btn-outline-primary">Previous</button>
+          </div>
+        </div>
+      </div>
+      <div class="collapse navbar-collapse d-flex justify-content-end">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a href="#">
+              Gravatar and Username
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="core-body">
+      <div class="row split">
+        <div class="col-6 combatant-col" id="one">
+          <div class="combat-navbar navbar navbar-fixed-top navbar-light bg-light">
+            <div class="btn-toolbar mr-2" role="group">
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add</button>
+                <div class="dropdown-menu">
+                  <a href="#" class="dropdown-item">Add PC</a>
+                  <a href="#" class="dropdown-item">Add Monster</a>
+                  <a href="#" class="dropdown-item">Add Many Monsters</a>
+                  <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Remove</button>
+                  <div class="dropdown-menu">
+                    <a href="#" class="dropdown-item">Remove PC</a>
+                    <a href="#" class="dropdown-item">Remove Monster</a>
+                    <a href="#" class="dropdown-item">Remove Many Monsters</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="under-navbar">
+            Combatants
+          </div>
+        </div>
+        <div class="col-6" id="two">
+          Details
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      Split(['#one', '#two'], {
+        elementStyle: function (dimension, size, gutterSize) {
+          $(window).trigger('resize');
+          return { 'flex-basis': 'calc(' + size + '% - ' + gutterSize + 'px)'}
+        },
+        gutterStyle: function (dimesion, gutterSize) {
+          return { 'flex-basis': gutterSize + 'px' }
+        },
+        minSize: 50,
+        gutterSize: 6,
+        cursor: 'col-resize'
+      });
+    </script>
+  </body>
+</html>
