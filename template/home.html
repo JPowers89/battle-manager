@@ -1,18 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Combat Master</title>
+    <title>Battle Manager</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="custom.css">
   </head>
   <body>
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Register with Battle Manager</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form class="form" action="user" method="post">
+            <div class="modal-body">
+              <input type="text" placeholder="Email">
+              <input type="password" placeholder="Password">
+              <input type="password" placeholder="Confirm Password">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Create my account</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
       <div class="d-flex justify-content-start">
-        <a href="/home" class="navbar-brand mr-0">Combat Master</a>
+        <a href="/home" class="navbar-brand mr-0">Battle Manager</a>
       </div>
       <div class="collapse navbar-collapse d-flex justify-content-end">
         <form class="navbar-form navbar-right form-inline">
@@ -20,20 +43,20 @@
             <input type="text" placeholder="Email" class="form-control">
             <input type="Password" placeholder="Password" class="form-control">
             <button type="button" name="button" class="btn btn-default">Login</button>
-            <a href="#" data-remote="true" data-toggle="modal" data-target="registerModal">Register</a>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#registerModal">Register</button>
           </div>
         </form>
       </div>
     </nav>
 
     <div class="center jumbotron">
-      <h1>Welcome to Combat Master</h1>
+      <h1>Welcome to Battle Manager</h1>
 
       <h2>
-        Combat Master is a web-based initiative tracker for Pathfinder.
+        Battle Manager is a web-based initiative tracker for Pathfinder.
       </h2>
 
-      <h3>With Combat Master, you can track basic details about PC's and Monsters quickly and easily.</h3>
+      <h3>With Battle Manager, you can track basic details about PC's and Monsters quickly and easily.</h3>
     </div>
   </body>
 </html>

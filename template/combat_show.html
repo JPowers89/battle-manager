@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Combat Master</title>
+    <title>Battle Manager</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.10/split.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="custom.css">
   </head>
   <body>
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
       <div class="d-flex justify-content-start">
-        <a href="/home" class="navbar-brand mr-0">Combat Master</a>
+        <a href="/home" class="navbar-brand mr-0">Battle Manager</a>
       </div>
       <div class="d-flex justify-content-center">
         <div class="btn-toolbar" role="toolbar" aria-label="Combat Toolbar">
@@ -40,48 +42,48 @@
       </div>
     </nav>
     <div class="core-body">
-      <div class="row split">
-        <div class="col-6 combatant-col" id="one">
+      <div class="row split flex">
+        <div class="combatants-col" id="one">
           <div class="combat-navbar navbar navbar-fixed-top navbar-light bg-light">
             <div class="btn-toolbar mr-2" role="group">
               <div class="btn-group" role="group">
-                <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm">Add</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
                 <div class="dropdown-menu">
-                  <a href="#" class="dropdown-item">Add PC</a>
-                  <a href="#" class="dropdown-item">Add Monster</a>
-                  <a href="#" class="dropdown-item">Add Many Monsters</a>
-                  <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Remove</button>
-                  <div class="dropdown-menu">
-                    <a href="#" class="dropdown-item">Remove PC</a>
-                    <a href="#" class="dropdown-item">Remove Monster</a>
-                    <a href="#" class="dropdown-item">Remove Many Monsters</a>
-                  </div>
+                  <a href="#" class="dropdown-item">Add Many</a>
+                </div>
+              </div>
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-outline-secondary btn-sm">Remove</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                  <a href="#" class="dropdown-item">Remove Many</a>
                 </div>
               </div>
             </div>
           </div>
-          <div class="under-navbar">
-            Combatants
+          <div class="combatants">
+            <ol id="combatants-list">
+              <li class="combatant-list-item">First Person</li>
+              <li class="combatant-list-item">Second Person</li>
+              <li class="combatant-list-item">Third Person</li>
+              <li class="combatant-list-item">Fourth Person</li>
+              <li class="combatant-list-item">Fifth Person</li>
+            </ol>
           </div>
         </div>
-        <div class="col-6" id="two">
-          Details
+        <div class="details-col" id="two">
+          <div class="details">
+            Details
+          </div>
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-      Split(['#one', '#two'], {
-        elementStyle: function (dimension, size, gutterSize) {
-          $(window).trigger('resize');
-          return { 'flex-basis': 'calc(' + size + '% - ' + gutterSize + 'px)'}
-        },
-        gutterStyle: function (dimesion, gutterSize) {
-          return { 'flex-basis': gutterSize + 'px' }
-        },
-        minSize: 50,
-        gutterSize: 6,
-        cursor: 'col-resize'
-      });
-    </script>
+    <script src="split.js"></script>
+    <script src="list_handler.js"></script>
   </body>
 </html>

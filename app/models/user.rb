@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :combats
   before_save :downcase_email, :activate_user
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -26,5 +27,8 @@ class User < ApplicationRecord
   end
   def User.new_token
     SecureRandom.urlsafe_base64
+  end
+  def username
+    self.email.split("@").first
   end
 end

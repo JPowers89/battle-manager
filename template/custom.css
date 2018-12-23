@@ -2,17 +2,10 @@ html, body {
   height: 100%;
 }
 
-.split {
-  height: 100%;
-}
-
 .center {
   text-align: center;
 }
 
-.under-navbar {
-  padding-top: 60px; /* 56px for top navbar */
-}
 .core-body {
   padding-top: 56px;
   margin-left: 10%;
@@ -26,12 +19,26 @@ html, body {
   box-sizing: border-box;
   overflow-y: auto;
   overflow-x: hidden;
+  height: 100%;
+}
+
+.combatants-col {
+  float: left;
+}
+
+.details-col {
+  float: right;
 }
 
 .gutter {
   background-color: #330000;
   background-repeat: no-repeat;
   background-position: 50%;
+}
+
+#flex {
+    display: flex;
+    flex-direction: row;
 }
 
 .gutter.gutter-horizontal {
@@ -54,4 +61,41 @@ html, body {
 .combatant-col {
   padding-left: 0px;
   padding-right: 0px;
+}
+
+#combatants-list {
+  width: 100%;
+  margin: 5px;
+  padding: 0px;
+}
+li .combatant-list-item {
+  background: white;
+  position: relative;
+  margin: 1em 0;
+  padding: 1em;
+  border: 2px solid black;
+  list-style: none;
+  padding-left: 42px;
+}
+
+li .handle {
+  background: #f8f8f8;
+  float: left;
+  padding: 8px;
+}
+
+.ui-selecting {
+  background: #eee;
+}
+
+.ui-selecting .handle {
+  background: #ddd;
+}
+
+.ui-selected {
+  background: #def;
+}
+
+.ui-selected .handle {
+  background: #cde;
 }

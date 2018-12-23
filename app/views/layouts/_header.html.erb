@@ -1,27 +1,25 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <nav>
-      <% if logged_in? %>
-
-      <% else %>
-        <%= form_for('#', url: login_path, html: { class: "navbar-form navbar-left form-inline"}) do |f| %>
-          <!-- above url: is a placeholder. should be new_combat_path-->
-          <%= f.submit 'New Combat', disabled: true, class: "btn btn-outline-secondary" %>
-        <% end %>
-        <%= form_for(:session, url: login_path, html: { class: "navbar-form navbar-right form-inline" }) do |f| %>
-          <div class="form-group">
-            <%= f.text_field :email, placeholder: "Email", class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.password_field :password, placeholder: "Password", class: "form-control"  %>
-          </div>
-          <!--<div class="checkbox">
-            <%= f.check_box :remember_me %><%= f.label :remember_me %>
-          </div>-->
-          <%= f.submit 'Login', class: "btn btn-default" %>
-          <%= link_to "Register", register_path, data: { remote: true, toggle: "modal", target: "registerModal" } %>
-        <% end %>
-      <% end %>
-    </nav>
+<nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
+  <div class="d-flex justify-content-start">
+    <%= link_to "Combat Master", root_path, class: "navbar-brand mr-0" %>
   </div>
-</header>
+  <div class="d-flex justify-content-center">
+    <% if logged_in? %>
+      <% if current_page?(new_combat_path) %>
+        <%= button_to "Start Combat", combats_path, { class: "btn btn-outline-primary" } %>
+      <% else %> <!-- I don't like this as users might get this toolbar when not editing a combat -->
+      <div class="btn-toolbar" role="toolbar" aria-label="Combat Toolbar">
+        <div class="btn-group mr-2" role="group" aria-label="Roll Initiative">
+          <%= button_to "Roll", roll_combat_path, { class: "btn btn-outline-primary" } %>
+        </div>
+        <div class="btn-group" role="group" aria-label="Manage Combat">
+          <%= button_to "Next", next_combat_path, { class: "btn btn-outline-primary" } %>
+          <%= button_to "Previous", previous_combat_path, { class: "btn btn-outline-primary" } %>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="collapse navbar-collapse d-flex justify-content-end">
+    <%= render 'layouts/login' %>
+  </div>
+</nav>
