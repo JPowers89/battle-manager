@@ -16,7 +16,7 @@
       <%= f.text_field :email, placeholder: "Email", class: "form-control" %>
       <%= f.password_field :password, placeholder: "Password", class: "form-control"  %>
       <%= f.submit 'Login', class: "btn btn-default" %>
-      <%= link_to "Register", register_path, data: { remote: true, toggle: "modal", target: "registerModal" } %>
+      <%= link_to 'Register', register_path,  data: { remote: true, toggle: "modal", target: "registerModal" }  %>
     </div>
     <!--<div class="checkbox">
       <%= f.check_box :remember_me %><%= f.label :remember_me %>

@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_16_205532) do
+ActiveRecord::Schema.define(version: 2018_12_28_144757) do
+
+# Could not dump table "characters" because of following StandardError
+#   Unknown type 'String' for column 'type'
+
+# Could not dump table "combatants" because of following StandardError
+#   Unknown type 'bool' for column 'active'
 
   create_table "combats", force: :cascade do |t|
     t.integer "round"

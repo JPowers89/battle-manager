@@ -1,8 +1,20 @@
-<div class="row no-gutters">
-  <div id="combat" class="col-lg-6">
-      Container Left
-  </div>
-  <div id="details" class="col-lg-6">
-      Container Right
+<div class="core-body">
+  <div class="row split flex">
+    <div class="combatants-col" id="one">
+      <%= render 'combats_navbar' %>
+      <div class="combatants">
+        <ol id="combatants-list">
+          <% @combat.combatants.each do |combatant| %>
+            <%= render partial: 'combatants/combatant_lg', locals: { combatant: combatant } %>
+          <% end %>
+        </ol>
+      </div>
+    </div>
+    <div class="details-col" id="two">
+      <div class="details">
+        Details
+      </div>
+    </div>
   </div>
 </div>
+<%= javascript_include_tag "split", "list_handler" %>

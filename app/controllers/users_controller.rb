@@ -5,7 +5,9 @@ class UsersController < ApplicationController
       flash[:success] = "Account created successfully!"
       redirect_to root_url
     else
-      render 'register'
+      respond_to do |format|
+        format.js { render action: "register" }
+      end
     end
   end
   def register
@@ -17,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   private
-  def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
-  end
+    def user_params
+      params.require(:user).permit(:email, :password, :password_confirmation)
+    end
 end

@@ -1,21 +1,21 @@
 <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
   <div class="d-flex justify-content-start">
-    <%= link_to "Combat Master", root_path, class: "navbar-brand mr-0" %>
+    <%= link_to "Battle Manager", root_path, class: "navbar-brand mr-0" %>
   </div>
   <div class="d-flex justify-content-center">
     <% if logged_in? %>
-      <% if current_page?(new_combat_path) %>
+      <% if current_page?(new_combat_path) || current_page?(root_path) %>
         <%= button_to "Start Combat", combats_path, { class: "btn btn-outline-primary" } %>
       <% else %> <!-- I don't like this as users might get this toolbar when not editing a combat -->
-      <div class="btn-toolbar" role="toolbar" aria-label="Combat Toolbar">
-        <div class="btn-group mr-2" role="group" aria-label="Roll Initiative">
-          <%= button_to "Roll", roll_combat_path, { class: "btn btn-outline-primary" } %>
+        <div class="btn-toolbar" role="toolbar" aria-label="Combat Toolbar">
+          <div class="btn-group mr-2" role="group" aria-label="Roll Initiative">
+            <%= button_to "Roll", roll_combat_path, { class: "btn btn-outline-primary" } %>
+          </div>
+          <div class="btn-group" role="group" aria-label="Manage Combat">
+            <%= button_to "Next", next_combat_path, { class: "btn btn-outline-primary" } %>
+            <%= button_to "Previous", previous_combat_path, { class: "btn btn-outline-primary" } %>
+          </div>
         </div>
-        <div class="btn-group" role="group" aria-label="Manage Combat">
-          <%= button_to "Next", next_combat_path, { class: "btn btn-outline-primary" } %>
-          <%= button_to "Previous", previous_combat_path, { class: "btn btn-outline-primary" } %>
-        </div>
-      </div>
       <% end %>
     <% end %>
   </div>

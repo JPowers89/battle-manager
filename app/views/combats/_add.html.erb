@@ -1,13 +1,13 @@
 <div class="modal-dialog" role="document">
   <div class="modal-content">
     <div class="modal-header">
-      <h4 class="modal-title">Register with Battle Manager</h4>
+      <h4 class="modal-title">Add a Combatant</h4>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <%= render 'shared/error_messages', object: @user %>
-    <%= form_with model: @user do |f| %>
+    <%= form_with url: combatants_path do |f| %>
       <div class="modal-body">
         <%= f.email_field :email, placeholder: "Email" %><br>
         <%= f.password_field :password, placeholder: "Password" %><br>

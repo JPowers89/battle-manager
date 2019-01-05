@@ -1,0 +1,22 @@
+<div class="combat-navbar navbar navbar-fixed-top navbar-light bg-light">
+  <div class="btn-toolbar mr-2 d-flex justify-content-start" role="group">
+    <div class="btn-group" role="group">
+      <%= button_to "Damage", damage_combat_path, { data: { remote: true, toggle: "modal", target: "damageModal" }, 
+        class: "btn btn-outline-secondary btn-sm" } %>
+    </div>
+    <div class="btn-group" role="group">
+      <%= button_to "Heal", heal_combat_path, { data: { remote: true, toggle: "modal", target: "healModal" }, 
+        class: "btn btn-outline-secondary btn-sm" } %>
+    </div>
+  </div>
+  <div class="btn-toolbar mr-2 d-flex justify-content-end" role="group">
+    <div class="btn-group" role="group">
+      <%= button_to "Add", add_combat_path, { data: { remote: true, toggle: "modal", target: "addModal" }, 
+        class: "btn btn-outline-secondary btn-sm" } %>
+    </div>
+    <div class="btn-group" role="group">
+      <%= button_to "Remove", remove_combat_path, { data: { remote: true, toggle: "modal", target: "removeModal" }, 
+        class: "btn btn-outline-secondary btn-sm" } %>
+    </div>
+  </div>
+</div>
