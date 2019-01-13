@@ -1,3 +1,85 @@
 // Place all the styles related to the Combats controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.split {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  .split-horizontal {
+    height: 100%;
+    float: left;
+  }
+}
+
+.gutter {
+  background-color: #330000;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  .gutter-horizontal {
+    cursor: col-resize;
+    height: 100%;
+    float: left;
+  }
+  .gutter-vertical {
+    cursor: row-resize;
+  }
+}
+
+.combatants-col {
+  float: left;
+}
+
+.details-col {
+  float: right;
+}
+
+#flex {
+    display: flex;
+    flex-direction: row;
+}
+
+#one, #two {
+  background-color: #e6f2ff;
+}
+
+.combatant-col {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#combatants-list {
+  width: 100%;
+  margin: 5px;
+  padding: 0px;
+}
+
+.combatant-list-item {
+  background: white;
+  position: relative;
+  margin: 1em 1.25em 1em 1em;
+  padding: 1em;
+  border: 2px solid black;
+  list-style: none;
+}
+
+.handle {
+  background: #f8f8f8;
+  float: left;
+}
+
+.ui-selecting {
+  background: #eee;
+  .handle {
+    background: #ddd;
+  }
+}
+
+.ui-selected {
+  background: #def;
+  .handle {
+    background: #cde;
+  }
+}

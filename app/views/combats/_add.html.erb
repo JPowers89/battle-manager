@@ -6,16 +6,22 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <%= render 'shared/error_messages', object: @user %>
-    <%= form_with url: combatants_path do |f| %>
+    <%= render 'shared/error_messages' %>
+    <%= form_with model: @combatant do |f| %>
       <div class="modal-body">
-        <%= f.email_field :email, placeholder: "Email" %><br>
-        <%= f.password_field :password, placeholder: "Password" %><br>
-        <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %><br>
+        <%= f.label :name %>
+        <%= f.text_field :name %><br>
+        <%= f.label :current_hp, "Current HP" %>
+        <%= f.text_field :current_hp, value: nil %><br>
+        <%= f.label :initiative %>
+        <%= f.text_field :initiative, value: "+0" %><br>
+        <%= f.label :quantity %>
+        <%= f.text_field :count, value: "0" %><br>
+        <%= f.hidden_field :combat_id, :value => params[:id] %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <%= f.submit "Create my account", class: "btn btn-primary" %>
+        <%= f.submit "Create Combatants", class: "btn btn-primary" %>
       </div>
     <% end %>
   </div>

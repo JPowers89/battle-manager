@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# Combatants are states of characters as they exist in a combat
 class CombatantsController < ApplicationController
-  before_action :set_combatant, only: [:show, :edit, :update, :destroy]
+  before_action :set_combatant, only: %i[show edit update destroy]
 
   # GET /combatants
   # GET /combatants.json
@@ -9,8 +12,7 @@ class CombatantsController < ApplicationController
 
   # GET /combatants/1
   # GET /combatants/1.json
-  def show
-  end
+  def show() end
 
   # GET /combatants/new
   def new
@@ -18,23 +20,17 @@ class CombatantsController < ApplicationController
   end
 
   # GET /combatants/1/edit
-  def edit
-  end
+  def edit() end
 
   # POST /combatants
   # POST /combatants.json
   def create
-    @combatant = Combatant.new(combatant_params)
-
-    respond_to do |format|
-      if @combatant.save
-        format.html { redirect_to @combatant, notice: 'Combatant was successfully created.' }
-        format.json { render :show, status: :created, location: @combatant }
-      else
-        format.html { render :new }
-        format.json { render json: @combatant.errors, status: :unprocessable_entity }
-      end
+    combat = Combat.find_by(id: combatant_params[:combat_id])
+    (1..combatant_params[:count].to_i).each do
+      combatant = combat.combatants.build(combatant_params)
+      combatant.save
     end
+    redirect_to combat
   end
 
   # PATCH/PUT /combatants/1
@@ -42,11 +38,12 @@ class CombatantsController < ApplicationController
   def update
     respond_to do |format|
       if @combatant.update(combatant_params)
-        format.html { redirect_to @combatant, notice: 'Combatant was successfully updated.' }
-        format.json { render :show, status: :ok, location: @combatant }
+        format.html do
+          redirect_to @combatant,
+                      notice: 'Combatant was successfully updated.'
+        end
       else
         format.html { render :edit }
-        format.json { render json: @combatant.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -56,19 +53,26 @@ class CombatantsController < ApplicationController
   def destroy
     @combatant.destroy
     respond_to do |format|
-      format.html { redirect_to combatants_url, notice: 'Combatant was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html do
+        redirect_to combatants_url,
+                    notice: 'Combatant was successfully destroyed.'
+      end
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_combatant
-      @combatant = Combatant.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def combatant_params
-      params.fetch(:combatant, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_combatant
+    @combatant = Combatant.find(params[:id])
+  end
+
+  # Never trust parameters from the internet, only allow the white list through.
+  def combatant_params
+    params.fetch(:combatant).permit(:name, 
+                                    :current_hp, 
+                                    :initiative, 
+                                    :count, 
+                                    :combat_id)
+  end
 end

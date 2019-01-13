@@ -1,34 +1,46 @@
+# frozen_string_literal: true
+
+# All users of the system must have a valid user record.
+# Represents logged in user
 class User < ApplicationRecord
-  has_many :combats, dependant: :destroy
+  has_many :combats, dependent: :destroy
   after_save :downcase_email, :activate_user
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
 
   validates(:email,
-    presence: true,
-    length: { maximum: 255 },
-    format: { with:  VALID_EMAIL_REGEX},
-    uniqueness: { case_sensitive: false })
+            presence: true,
+            length: { maximum: 255 },
+            format: { with: VALID_EMAIL_REGEX },
+            uniqueness: { case_sensitive: false })
   validates(:password,
-    presence: true,
-    length: { minimum: 6 },
-    allow_nil: true)
-    has_secure_password
+            presence: true,
+            length: { minimum: 6 },
+            allow_nil: true)
+  has_secure_password
 
   def activate_user
     update_column(:active, true)
   end
-  def User.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+
+  def self.digest(string)
+    cost = if ActiveModel::SecurePassworrd.min_cost
+             BCrypt::Engine::MIN_COST
+           else
+             BCrypt::Engine.cost
+           end
     BCrypt::Password.create(string, cost: cost)
   end
+
   def downcase_email
-    self.email.downcase!
+    email.downcase!
   end
-  def User.new_token
+
+  def self.new_token
     SecureRandom.urlsafe_base64
   end
+
   def username
-    self.email.split("@").first
+    email.split('@').first
   end
 end
