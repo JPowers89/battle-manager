@@ -15,8 +15,7 @@
         class: "btn btn-outline-secondary btn-sm" } %>
     </div>
     <div class="btn-group" role="group">
-      <%= button_to "Remove", remove_combat_path, { method: :get, remote: true, data: { remote: true, toggle: "modal", target: "removeModal" }, 
-        class: "btn btn-outline-secondary btn-sm" } %>
+        <button id="removeCombatant" class="btn btn-outline-secondary btn-sm" data-link="<%= remove_combat_path %>">Remove</button>
     </div>
   </div>
 </div>

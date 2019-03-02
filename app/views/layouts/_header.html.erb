@@ -8,8 +8,12 @@
         <%= button_to "Start Combat", combats_path, { class: "btn btn-outline-primary" } %>
       <% else %> <!-- I don't like this as users might get this toolbar when not editing a combat -->
         <div class="btn-toolbar" role="toolbar" aria-label="Combat Toolbar">
-          <div class="btn-group mr-2" role="group" aria-label="Roll Initiative">
-            <%= button_to "Roll", roll_combat_path, { class: "btn btn-outline-primary" } %>
+          <div class="btn-group mr-2" role="group">
+            <% if @combat.active? %>
+              <%= button_to "Stop", stop_combat_path, { class: "btn btn-outline-primary" } %>
+            <% else %>
+              <%= button_to "Roll", roll_combat_path, { method: :get, class: "btn btn-outline-primary" } %>
+            <% end %>            
           </div>
           <div class="btn-group" role="group" aria-label="Manage Combat">
             <%= button_to "Next", next_combat_path, { class: "btn btn-outline-primary" } %>

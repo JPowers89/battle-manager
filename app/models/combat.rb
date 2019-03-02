@@ -4,5 +4,5 @@
 # This includes all combatants, time in round, total rounds, etc. 
 class Combat < ApplicationRecord
   belongs_to :user
-  has_many :combatants, dependent: :destroy
+  has_many :combatants, -> { order(position: :asc, name: :asc) }, dependent: :destroy
 end

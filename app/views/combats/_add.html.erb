@@ -11,12 +11,12 @@
       <div class="modal-body">
         <%= f.label :name %>
         <%= f.text_field :name %><br>
-        <%= f.label :current_hp, "Current HP" %>
-        <%= f.text_field :current_hp, value: nil %><br>
-        <%= f.label :initiative %>
-        <%= f.text_field :initiative, value: "+0" %><br>
+        <%= f.label :max_hp, "Max HP" %>
+        <%= f.text_field :max_hp, value: nil %><br>
+        <%= f.label :init_mod, "Initiative" %>
+        <%= f.text_field :init_mod, value: "+0" %><br>
         <%= f.label :quantity %>
-        <%= f.text_field :count, value: "0" %><br>
+        <%= f.text_field :count, value: "1" %><br>
         <%= f.hidden_field :combat_id, :value => params[:id] %>
       </div>
       <div class="modal-footer">

@@ -5,18 +5,19 @@ Rails.application.routes.draw do
 
   post    '/login',      to: 'sessions#create'
   delete  '/logout',     to: 'sessions#destroy'
-  get     '/register',   to: "users#register"
+  get     '/register',   to: 'users#register'
 
   resources :users
-  resources :combats, only: [:create, :show, :new, :index] do
+  resources :combats, only: %i[create show new index update] do
     member do
-      get 'next'
-      get 'previous'
+      post 'next'
+      post 'previous'
       get 'roll'
       get 'damage'
       get 'heal'
       get 'add'
-      get 'remove'
+      post 'remove'
+      post 'stop'
     end
   end
 

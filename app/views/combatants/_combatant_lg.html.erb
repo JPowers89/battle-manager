@@ -1,3 +1,15 @@
-<li class="combatant-list-item">
-  <%= combatant.name %>
+<li class="combatant-list-item combatant-list-item-lg ui-corner-all <%= 'combatant-active' if combatant.active? %>" data-combatant-id="<%= combatant.id %>" data-active="<%= combatant.active %>">
+  <div class="combatant-item combatant-item-lg">
+    <div class="float-left">
+      <div class='handle'>
+        <span class='ui-icon ui-icon-carat-2-n-s'></span>
+      </div>
+      <%= combatant.name %>
+    </div>
+    <div class="float-right">
+      HP <strong><%= combatant.current_hp %></strong>/<%= combatant.max_hp %>
+      <span class="init">Init <span class="mod">(<%= sprintf("%+d", combatant.init_mod) %>)</span> </span>
+      <%= combatant.initiative %>
+    </div>
+  </div>  
 </li>

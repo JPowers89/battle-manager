@@ -32,3 +32,6 @@
 
 # Ignore DS_Store
 .DS_Store
+
+# Ignore database cedentitals
+/config/database.yml

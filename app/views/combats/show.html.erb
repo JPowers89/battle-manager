@@ -4,7 +4,7 @@
     <div class="combatants-col" id="one">
       <%= render 'combats_navbar' %>
       <div class="combatants">
-        <ol id="combatants-list">
+        <ol id="combatants-list" data-link="<%= combat_path %>">
           <% @combat.combatants.each do |combatant| %>
             <%= render partial: 'combatants/combatant_lg', locals: { combatant: combatant } %>
           <% end %>

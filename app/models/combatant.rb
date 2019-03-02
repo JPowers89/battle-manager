@@ -1,41 +1,51 @@
 # frozen_string_literal: true
 
-# A Combatant is the core component of a combat. A combat has many combatants and each combatant has basic stats.
+# A Combatant is the core component of a combat.
+# A combat has many combatants and each combatant has basic stats.
 # Combatants can relate to characters for more complicated scenarios
 class Combatant < ApplicationRecord
   attr_accessor :count
   belongs_to :combat
-  before_save :increment_name
+  before_create :increment_name, :set_current_hp
 
   validates(:name, presence: true)
 
   private
 
+  # Defaults the current hp if value is 0 during creation
+  def set_current_hp
+    self.current_hp = max_hp if current_hp.zero?
+  end
   # Increments a number at the end of the combatant name if a duplicate exists
-  # For example; If the name is Monster, and Monster 7 exists, it's renamed to Monster 8
+  # E.g.; If name is Monster, and Monster 7 exists, it's renamed to Monster 8
   def increment_name
-    return nil unless self[:combat]
+    return nil unless combat
 
-    names = find_similiar_names(self[:combat][:combatants])
-    return nil unless names.empty?
+    matches = find_similiar_names(combat.combatants)
+    return nil if matches.empty? || matches.count == 1
 
-    num = names.last.scan('/\s\d/')
-    index = num.empty? ? 1 : num.strip.to_i + 1
-    self[:name] = "#{self[:name]} #{index}"
+    if matches.count == 2
+      matches.first.name = "#{matches.first.name} 1"
+      matches.first.save
+      # matches.first.reload # I'm pretty sure i don't need this
+    end
+    num = matches[-2].name.scan(/\d+$/)
+    # the last element is the current element
+    index = num.empty? ? 1 : num.first.to_i + 1
+    self.name = "#{name} #{index}"
   end
 
-  # Finds names of other combatants that start with a similiar name. 
-  # Combatants across the db cane have duplicate names, but not for the same combatant. 
+  # Finds names of other combatants that start with a similiar name.
+  # Combatants can have duplicate names, but not for the same combat.
   # Params:
   # +combatants+:: list of all combatants in the combat
   # @return [String[]]
   def find_similiar_names(combatants)
-    matching_names = []
-
+    matches = []
     combatants.each do |combatant|
-      matching_names << combatant[:name] if combatant[:name].match?("/#{self[:name]}\s/")
+      matches << combatant if combatant.name.start_with?(name)
     end
-
-    matching_names.sort
+    matches.sort_by { :name }
+    matches
   end
 end

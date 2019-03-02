@@ -20,9 +20,9 @@ gem 'bootsnap', '1.3.2'
 gem 'faker', '1.9.1'
 gem 'responders', '~> 2.4'
 gem 'popper_js', '~> 1.14', '>= 1.14.5'
+gem 'pg', '~> 1.1', '>= 1.1.4'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.13'
   gem 'byebug', '10.0.2', platforms: [:mri, :mingw, :x64_mingw]
 end
 
@@ -39,10 +39,6 @@ group :test do
   gem 'minitest-reporters', '1.3.5'
   gem 'guard', '2.15.0'
   gem 'guard-minitest', '2.4.6'
-end
-
-group :production do
-  gem 'pg', '1.1.3'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
