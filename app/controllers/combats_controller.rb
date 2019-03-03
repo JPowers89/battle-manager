@@ -25,19 +25,32 @@ class CombatsController < ApplicationController
   def new() end
 
   def next
-    found = false
-    @combat.combatants.each do |combatant|
-      combatant.active = true if found
-      found = false
-      if combatant.active?
-        combatant.update_attribute(:active, false)
-        found = true
-      end
+    @combat.combatants.each_with_index do |combatant, i|
+      next unless combatant.active?
+
+      next_combatant = i == @combat.combatants.size - 1 ? @combat.combatants.first : @combat.combatants[i + 1]
+      combatant.active, next_combatant.active = next_combatant.active, combatant.active
+      @combat.round += 1 if i == @combat.combatants.size - 1
+      combatant.save
+      next_combatant.save
+      @combat.save
+      break
     end
-    redirect_to @combat unless found
-    @combat.round += 1
-    @combat.combatants.first.update_attribute(:active, true)
-    @combat.save
+    redirect_to @combat
+  end
+
+  def previous
+    @combat.combatants.each_with_index do |combatant, i|
+      next unless combatant.active?
+
+      break if i.zero?
+
+      next_combatant = @combat.combatants[i - 1]
+      combatant.active, next_combatant.active = next_combatant.active, combatant.active
+      combatant.save
+      next_combatant.save
+      break
+    end
     redirect_to @combat
   end
 

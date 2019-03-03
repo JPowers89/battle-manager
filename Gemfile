@@ -21,6 +21,7 @@ gem 'faker', '1.9.1'
 gem 'responders', '~> 2.4'
 gem 'popper_js', '~> 1.14', '>= 1.14.5'
 gem 'pg', '~> 1.1', '>= 1.1.4'
+gem 'best_in_place', '~> 3.0.1'
 
 group :development, :test do
   gem 'byebug', '10.0.2', platforms: [:mri, :mingw, :x64_mingw]
